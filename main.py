@@ -2,8 +2,12 @@ import sys
 from stats import get_num_words, get_char_counts, sort_char_counts
 
 def get_book_text(text: str) -> str:
-    with open(text, 'r') as f:
-        file_contents = f.read()
+    try:
+        with open(text, 'r') as f:
+            file_contents = f.read()
+    except FileNotFoundError:
+        print(f"Error: Could not find file at path {text}")
+        sys.exit(1)
     return file_contents
 
 def print_report(text: str):
